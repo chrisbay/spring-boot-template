@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="base :: head(~{::title})">
+    <title>Home</title>
+</head>
+<body>
+
+    <nav th:replace="base :: navbar"></nav>
+
+    <div th:replace="base :: messages"></div>
+
+    <th:block th:replace="base :: scripts"></th:block>
+
+</body>
+</html>
