@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringJUnitConfig
 @FunctionalTestConfig
 @ContextConfiguration
-public class HomeFunctionalTests extends AbstractBaseFunctionalTest {
+public class HomeFunctionalTest extends AbstractBaseFunctionalTest {
 
     @Test
     public void testCanViewRegistrationForm() throws Exception {

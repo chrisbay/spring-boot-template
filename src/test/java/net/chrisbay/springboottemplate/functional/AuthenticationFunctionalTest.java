@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringJUnitConfig
 @FunctionalTestConfig
 @ContextConfiguration
-public class AuthenticationFunctionalTests extends AbstractBaseFunctionalTest {
+public class AuthenticationFunctionalTest extends AbstractBaseFunctionalTest {
 
     @Test
     public void testCanViewRegistrationForm() throws Exception {

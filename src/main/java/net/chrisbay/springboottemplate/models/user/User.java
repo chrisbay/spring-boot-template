@@ -1,50 +1,40 @@
 package net.chrisbay.springboottemplate.models.user;
 
 import net.chrisbay.springboottemplate.models.AbstractEntity;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Entity
+@Validated
 public class User extends AbstractEntity {
 
-    @NotBlank
+    @NotBlank(message = "Email may not be blank")
+    @Email(message = "Invalid email format")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "First name may not be blank")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "Last name may not be blank")
     private String lastName;
 
-    @NotBlank
+    @NotBlank(message = "Password may not be blank")
+    @Size(min = 8, message = "Password must contain at least 8 characters")
     private String password;
 
-    @NotNull
+    @NotNull(message = "User.enabled may not be blank")
     private Boolean enabled = true;
 
     public User() {}
 
-    public User(@NotBlank String email, @NotBlank String firstName, @NotBlank String lastName, @NotBlank String password) {
-
-        if (email == null || email.length() == 0 || !isValidEmail(email))
-            throw new IllegalArgumentException("Email may not be blank");
-
-        if (firstName == null || firstName.length() == 0)
-            throw new IllegalArgumentException("firstName may not be blank");
-
-        if (lastName == null || lastName.length() == 0)
-            throw new IllegalArgumentException("lastName may not be blank");
-
-        if (password == null || password.length() == 0)
-            throw new IllegalArgumentException("Password may not be blank");
-
+    public User(String email, String firstName, String lastName, String password) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -93,37 +83,4 @@ public class User extends AbstractEntity {
         this.enabled = enabled;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User user = (User) obj;
-        return email.equals(user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getEmail());
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "email='" + email + '\'' +
-                ", fullName='" + firstName + '\'' +
-                '}';
-    }
-
-    private static boolean isValidEmail(String email) {
-        Pattern pattern = Pattern.compile("\\S+@\\S+");
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
 }
