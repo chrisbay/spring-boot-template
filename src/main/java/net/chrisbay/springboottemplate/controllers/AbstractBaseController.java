@@ -3,9 +3,9 @@ package net.chrisbay.springboottemplate.controllers;
 import net.chrisbay.springboottemplate.models.user.User;
 import net.chrisbay.springboottemplate.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
-import java.security.Principal;
 
 public abstract class AbstractBaseController {
 
@@ -15,9 +15,10 @@ public abstract class AbstractBaseController {
     protected static final String MESSAGE_KEY = "message";
 
     @ModelAttribute("user")
-    public User getLoggedInUser(Principal principal) {
-        if (principal != null)
-            return userService.findByEmail(principal.getName());
+    public User getLoggedInUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null)
+            return userService.findByEmail(authentication.getName());
         return null;
     }
 

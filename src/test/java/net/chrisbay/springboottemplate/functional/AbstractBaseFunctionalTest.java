@@ -2,9 +2,7 @@ package net.chrisbay.springboottemplate.functional;
 
 import net.chrisbay.springboottemplate.forms.UserForm;
 import net.chrisbay.springboottemplate.user.UserService;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -12,7 +10,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class AbstractBaseFunctionalTest {
 
     @Autowired
@@ -23,7 +20,7 @@ public abstract class AbstractBaseFunctionalTest {
 
     MockMvc mockMvc;
 
-    @BeforeAll
+    @BeforeEach
     public void setupMockMvc() {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(context)
@@ -36,7 +33,7 @@ public abstract class AbstractBaseFunctionalTest {
     static final String TEST_USER_EMAIL = "test@launchcode.org";
     static final String TEST_USER_PASSWORD = "learntocode";
 
-    @BeforeAll
+    @BeforeEach
     public void setUpUser() throws Exception {
         UserForm userForm = new UserForm();
         userForm.setEmail(TEST_USER_EMAIL);

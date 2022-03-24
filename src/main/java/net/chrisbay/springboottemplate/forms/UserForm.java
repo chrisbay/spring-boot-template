@@ -17,7 +17,7 @@ public class UserForm {
     private String lastName;
 
     @NotNull
-    @Size(min = 6, max = 50, message = "Password must be between 6 and 50 characters")
+    @Size(min = 6, message = "Password must be at least 8 characters long")
     private String password;
 
     @NotNull(message = "Passwords do not match")

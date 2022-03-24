@@ -46,10 +46,10 @@ public class AuthenticationController extends AbstractBaseController {
             return "redirect:/";
 
         if (error != null)
-            model.addAttribute(MESSAGE_KEY, "danger|Your username and password are invalid");
+            model.addAttribute(MESSAGE_KEY, "danger|Invalid username and/or password");
 
         if (logout != null)
-            model.addAttribute(MESSAGE_KEY, "info|You have logged out");
+            model.addAttribute(MESSAGE_KEY, "info|You have been logged out");
 
         return "login";
     }

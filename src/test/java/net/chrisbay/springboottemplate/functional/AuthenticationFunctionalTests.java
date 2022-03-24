@@ -140,9 +140,6 @@ public class AuthenticationFunctionalTests extends AbstractBaseFunctionalTest {
         mockMvc.perform(post("/logout").with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(header().string("Location", "/login?logout"));
-        mockMvc.perform(get("/"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(header().string("Location", "http://localhost/login"));
     }
 
 }

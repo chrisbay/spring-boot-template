@@ -12,14 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.sql.DataSource;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    DataSource dataSource;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -40,23 +35,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .regexMatchers("/").permitAll()
                 .regexMatchers("/register").permitAll()
-                .regexMatchers("/webjars/.*").permitAll()
-                .regexMatchers("/css/.*").permitAll()
-                .regexMatchers("/login?[^/]*").permitAll()
+                .regexMatchers("/webjars.*").permitAll()
+                .regexMatchers("/css.*").permitAll()
+                .regexMatchers("/login[^/]*").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("email")
-                .defaultSuccessUrl("/", true)
-                .permitAll()
+                    .formLogin()
+                    .loginPage("/login")
+                    .usernameParameter("email")
+                    .defaultSuccessUrl("/", true)
                 .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")
+                    .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login?logout")
                 .and()
-                .rememberMe();
+                    .rememberMe();
     }
 
     @Override
