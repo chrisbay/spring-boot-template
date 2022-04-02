@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,21 +14,20 @@ import java.util.List;
 @Validated
 public class User extends AbstractEntity {
 
-    @NotBlank(message = "Email may not be blank")
+    @NotBlank(message = "User.email may not be blank")
     @Email(message = "Invalid email format")
     private String email;
 
-    @NotBlank(message = "First name may not be blank")
+    @NotBlank(message = "User.firstName may not be blank")
     private String firstName;
 
-    @NotBlank(message = "Last name may not be blank")
+    @NotBlank(message = "User.lastName may not be blank")
     private String lastName;
 
-    @NotBlank(message = "Password may not be blank")
-    @Size(min = 8, message = "Password must contain at least 8 characters")
+    @NotBlank(message = "User.password may not be blank")
     private String password;
 
-    @NotNull(message = "User.enabled may not be blank")
+    @NotNull(message = "User.enabled may not be null")
     private Boolean enabled = true;
 
     public User() {}

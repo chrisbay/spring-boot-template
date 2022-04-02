@@ -24,15 +24,14 @@ public class AuthenticationController extends AbstractBaseController {
     }
 
     @PostMapping(value = "/register")
-    public String register(@ModelAttribute @Valid UserForm userForm, Errors errors) {
+    public String register(@ModelAttribute @Valid UserForm userForm, Errors errors, Model model) {
 
-        if (errors.hasErrors())
-            return "register";
+        if (userService.findByEmail(userForm.getEmail()) != null) {
+            errors.rejectValue("email", "email.alreadyexists", "The email address provided has already been registered");
+        }
 
-        try {
-            userService.save(userForm);
-        } catch (EmailExistsException e) {
-            errors.rejectValue("email", "email.alreadyexists", e.getMessage());
+        if (errors.hasErrors()) {
+            model.addAttribute("validated", true);
             return "register";
         }
 

@@ -33,7 +33,7 @@ public class AuthenticationFunctionalTest extends AbstractBaseFunctionalTest {
     @Test
     public void testCanRegister() throws Exception {
         String email = "newuser@domain.com";
-        String password = "abc123";
+        String password = "a good password";
         mockMvc.perform(post("/register").with(csrf())
                         .param("firstName", "New")
                         .param("lastName", "User")

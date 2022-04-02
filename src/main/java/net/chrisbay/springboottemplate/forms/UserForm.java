@@ -1,29 +1,38 @@
 package net.chrisbay.springboottemplate.forms;
 
+import net.chrisbay.springboottemplate.models.user.NotCommonPassword;
+
 import javax.validation.constraints.*;
 
 public class UserForm {
 
-    @NotNull
-    @Email(message = "Invalid email address")
+    @NotBlank
+    @Email(message = "Please provide a valid email address")
     private String email;
 
-    @NotNull
-    @NotBlank(message = "First name is required")
+    @NotBlank(message = "Please provide your first name")
     private String firstName;
 
-    @NotNull
-    @NotBlank(message = "Last name is required")
+    @NotBlank(message = "Please provide your last name")
     private String lastName;
 
-    @NotNull
-    @Size(min = 6, message = "Password must be at least 8 characters long")
+    @NotBlank(message = "")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    @NotCommonPassword(message = "Please provide a more secure password")
     private String password;
 
     @NotNull(message = "Passwords do not match")
     private String verifyPassword;
 
     public UserForm() {}
+
+    public UserForm(String email, String firstName, String lastName, String password, String verifyPassword) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.verifyPassword = verifyPassword;
+    }
 
     public String getEmail() {
         return email;
@@ -55,7 +64,6 @@ public class UserForm {
 
     public void setPassword(String password) {
         this.password = password;
-        checkPasswordForRegistration();
     }
 
     public String getVerifyPassword() {
@@ -68,8 +76,9 @@ public class UserForm {
     }
 
     private void checkPasswordForRegistration() {
-        if (!getPassword().equals(verifyPassword)) {
+        if (this.password == null || !this.password.equals(verifyPassword)) {
             verifyPassword = null;
+            password = null;
         }
     }
 }

@@ -119,26 +119,19 @@ public class UserTest {
     public void testUserPasswordValidationWhenBlank() {
         User user = new User("me@me.com", "Test", "User", " ");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
-        assertEquals(2, violations.size()); // Also fails length validation
+        assertEquals(1, violations.size());
     }
 
     @Test
     public void testUserPasswordValidationWhenEmpty() {
         User user = new User("me@me.com", "Test", "User", "");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
-        assertEquals(2, violations.size()); // Also fails length validation
+        assertEquals(1, violations.size());
     }
 
     @Test
     public void testUserPasswordValidationWhenNull() {
         User user = new User("me@me.com", "Test", "User", null);
-        Set<ConstraintViolation<User>> violations = validator.validate(user);
-        assertEquals(1, violations.size());
-    }
-
-    @Test
-    public void testUserPasswordValidationWhenTooShort() {
-        User user = new User("me@me.com", "Test", "User", "1234567");
         Set<ConstraintViolation<User>> violations = validator.validate(user);
         assertEquals(1, violations.size());
     }

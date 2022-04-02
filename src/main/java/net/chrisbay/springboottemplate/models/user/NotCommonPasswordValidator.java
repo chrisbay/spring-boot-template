@@ -1,0 +1,234 @@
+package net.chrisbay.springboottemplate.models.user;
+
+import org.springframework.stereotype.Component;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
+public class NotCommonPasswordValidator implements ConstraintValidator<NotCommonPassword, String> {
+
+    private List<String> passwords = new ArrayList<>();
+    private boolean initialized = false;
+
+    public NotCommonPasswordValidator() {
+        initialize();
+    }
+
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        return !passwords.contains(value);
+    }
+
+    // Initializes the collection using https://nordpass.com/most-common-passwords-list/
+    private void initialize() {
+
+        if (initialized) return;
+
+        passwords.add("123456");
+        passwords.add("123456789");
+        passwords.add("picture1");
+        passwords.add("password");
+        passwords.add("12345678");
+        passwords.add("111111");
+        passwords.add("123123");
+        passwords.add("12345");
+        passwords.add("1234567890");
+        passwords.add("senha");
+        passwords.add("1234567");
+        passwords.add("qwerty");
+        passwords.add("abc123");
+        passwords.add("Million2");
+        passwords.add("000000");
+        passwords.add("1234");
+        passwords.add("iloveyou");
+        passwords.add("aaron431");
+        passwords.add("password1");
+        passwords.add("qqww1122");
+        passwords.add("123");
+        passwords.add("omgpop");
+        passwords.add("123321");
+        passwords.add("654321");
+        passwords.add("qwertyuiop");
+        passwords.add("qwer123456");
+        passwords.add("123456a");
+        passwords.add("a123456");
+        passwords.add("666666");
+        passwords.add("asdfghjkl");
+        passwords.add("ashley");
+        passwords.add("987654321");
+        passwords.add("unknown");
+        passwords.add("zxcvbnm");
+        passwords.add("112233");
+        passwords.add("chatbooks");
+        passwords.add("20100728");
+        passwords.add("123123123");
+        passwords.add("princess");
+        passwords.add("jacket025");
+        passwords.add("evite");
+        passwords.add("123abc");
+        passwords.add("123qwe");
+        passwords.add("sunshine");
+        passwords.add("121212");
+        passwords.add("dragon");
+        passwords.add("1q2w3e4r");
+        passwords.add("5201314");
+        passwords.add("159753");
+        passwords.add("123456789");
+        passwords.add("pokemon");
+        passwords.add("qwerty123");
+        passwords.add("Bangbang123");
+        passwords.add("jobandtalent");
+        passwords.add("monkey");
+        passwords.add("1qaz2wsx");
+        passwords.add("abcd1234");
+        passwords.add("default");
+        passwords.add("aaaaaa");
+        passwords.add("soccer");
+        passwords.add("123654");
+        passwords.add("ohmnamah23");
+        passwords.add("12345678910");
+        passwords.add("zing");
+        passwords.add("shadow");
+        passwords.add("102030");
+        passwords.add("11111111");
+        passwords.add("asdfgh");
+        passwords.add("147258369");
+        passwords.add("qazwsx");
+        passwords.add("qwe123");
+        passwords.add("michael");
+        passwords.add("football");
+        passwords.add("baseball");
+        passwords.add("1q2w3e4r5t");
+        passwords.add("party");
+        passwords.add("daniel");
+        passwords.add("asdasd");
+        passwords.add("222222");
+        passwords.add("myspace1");
+        passwords.add("asd123");
+        passwords.add("555555");
+        passwords.add("a123456789");
+        passwords.add("888888");
+        passwords.add("7777777");
+        passwords.add("fuckyou");
+        passwords.add("1234qwer");
+        passwords.add("superman");
+        passwords.add("147258");
+        passwords.add("999999");
+        passwords.add("159357");
+        passwords.add("love123");
+        passwords.add("tigger");
+        passwords.add("purple");
+        passwords.add("samantha");
+        passwords.add("charlie");
+        passwords.add("babygirl");
+        passwords.add("88888888");
+        passwords.add("jordan23");
+        passwords.add("789456123");
+        passwords.add("jordan");
+        passwords.add("anhyeuem");
+        passwords.add("killer");
+        passwords.add("basketball");
+        passwords.add("michelle");
+        passwords.add("1q2w3e");
+        passwords.add("lol123");
+        passwords.add("qwerty1");
+        passwords.add("789456");
+        passwords.add("6655321");
+        passwords.add("nicole");
+        passwords.add("naruto");
+        passwords.add("master");
+        passwords.add("chocolate");
+        passwords.add("maggie");
+        passwords.add("computer");
+        passwords.add("hannah");
+        passwords.add("jessica");
+        passwords.add("123456789a");
+        passwords.add("password123");
+        passwords.add("hunter");
+        passwords.add("686584");
+        passwords.add("iloveyou1");
+        passwords.add("0987654321");
+        passwords.add("justin");
+        passwords.add("cookie");
+        passwords.add("hello");
+        passwords.add("blink182");
+        passwords.add("andrew");
+        passwords.add("25251325");
+        passwords.add("love");
+        passwords.add("987654");
+        passwords.add("bailey");
+        passwords.add("princess1");
+        passwords.add("0123456");
+        passwords.add("101010");
+        passwords.add("12341234");
+        passwords.add("a801016");
+        passwords.add("1111");
+        passwords.add("1111111");
+        passwords.add("anthony");
+        passwords.add("yugioh");
+        passwords.add("fuckyou1");
+        passwords.add("amanda");
+        passwords.add("asdf1234");
+        passwords.add("trustno1");
+        passwords.add("butterfly");
+        passwords.add("x4ivygA51F");
+        passwords.add("iloveu");
+        passwords.add("batman");
+        passwords.add("starwars");
+        passwords.add("summer");
+        passwords.add("michael1");
+        passwords.add("00000000");
+        passwords.add("lovely");
+        passwords.add("jakcgt333");
+        passwords.add("buster");
+        passwords.add("jennifer");
+        passwords.add("babygirl1");
+        passwords.add("family");
+        passwords.add("456789");
+        passwords.add("azerty");
+        passwords.add("andrea");
+        passwords.add("q1w2e3r4");
+        passwords.add("qwer1234");
+        passwords.add("hello123");
+        passwords.add("10203");
+        passwords.add("matthew");
+        passwords.add("pepper");
+        passwords.add("12345a");
+        passwords.add("letmein");
+        passwords.add("joshua");
+        passwords.add("131313");
+        passwords.add("123456b");
+        passwords.add("madison");
+        passwords.add("Sample123");
+        passwords.add("777777");
+        passwords.add("football1");
+        passwords.add("jesus1");
+        passwords.add("taylor");
+        passwords.add("b123456");
+        passwords.add("whatever");
+        passwords.add("welcome");
+        passwords.add("ginger");
+        passwords.add("flower");
+        passwords.add("333333");
+        passwords.add("1111111111");
+        passwords.add("robert");
+        passwords.add("samsung");
+        passwords.add("a12345");
+        passwords.add("loveme");
+        passwords.add("gabriel");
+        passwords.add("alexander");
+        passwords.add("cheese");
+        passwords.add("passw0rd");
+        passwords.add("142536");
+        passwords.add("peanut");
+        passwords.add("11223344");
+        passwords.add("thomas");
+        passwords.add("angel1");
+
+        initialized = true;
+    }
+
+}
